@@ -1,12 +1,6 @@
 import * as THREE from "three";
-import React, {
-    forwardRef,
-    useEffect,
-    useRef,
-    useState,
-    type JSX,
-} from "react";
-import { Html, Texture, useGLTF } from "@react-three/drei";
+import { forwardRef, useEffect, useRef, useState, type JSX } from "react";
+import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 type GLTFResult = GLTF & {
@@ -25,7 +19,7 @@ type GLTFResult = GLTF & {
 
 export const Phone = forwardRef(
     (props: JSX.IntrinsicElements["group"], phoneRef) => {
-        const phoneScreenRef = useRef<THREE.Mesh>();
+        const phoneScreenRef = useRef<THREE.Mesh>(null);
         const { nodes, materials } = useGLTF(
             "/Phone.glb"
         ) as unknown as GLTFResult;
@@ -46,7 +40,7 @@ export const Phone = forwardRef(
         }, []);
 
         const handleOnClick = () => {
-            if (!phoneScreenRef.current) return;
+            if (!phoneScreenRef || !phoneScreenRef.current) return;
             console.log("handleOnClick");
             document.body.style.cursor = "auto";
             const randInt = THREE.MathUtils.randInt(0, 10);
@@ -54,6 +48,7 @@ export const Phone = forwardRef(
             screenTextureLoader.load(
                 `https://via.assets.so/game.png?id=${randInt}&q=95&w=360&h=360&fit=fill`,
                 (newTexture) => {
+                    if (!phoneScreenRef || !phoneScreenRef.current) return;
                     setTexture(newTexture);
                     (
                         phoneScreenRef.current

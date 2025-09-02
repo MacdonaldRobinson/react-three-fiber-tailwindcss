@@ -1,10 +1,10 @@
 import { Scroll, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useState, type RefObject } from "react";
+import { type RefObject } from "react";
 import type { Object3D } from "three";
 
 type TScrollContent = {
-    phoneRef: RefObject<Object3D>;
+    phoneRef: RefObject<Object3D | null>;
 };
 
 const ScrollContent = ({ phoneRef }: TScrollContent) => {
