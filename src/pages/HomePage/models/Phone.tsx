@@ -21,7 +21,7 @@ export const Phone = forwardRef(
     (props: JSX.IntrinsicElements["group"], phoneRef) => {
         const phoneScreenRef = useRef<THREE.Mesh>(null);
         const { nodes, materials } = useGLTF(
-            "/Phone.glb"
+            "Phone.glb"
         ) as unknown as GLTFResult;
         const [texture, setTexture] = useState<THREE.Texture>();
 
@@ -95,4 +95,4 @@ export const Phone = forwardRef(
     }
 );
 
-useGLTF.preload("/Phone.glb");
+useGLTF.preload("Phone.glb");

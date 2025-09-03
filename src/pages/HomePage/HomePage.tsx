@@ -3,9 +3,10 @@ import { Canvas } from "@react-three/fiber";
 import { Phone } from "./models/Phone";
 import ScrollContent from "./ScrollContent/ScrollContent";
 import { useRef } from "react";
+import type { Object3D } from "three";
 
 const HomePage = () => {
-    const phoneRef = useRef(null);
+    const phoneRef = useRef<Object3D>(null);
 
     return (
         <div className="h-screen w-screen">
